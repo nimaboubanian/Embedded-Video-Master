@@ -2,6 +2,16 @@
 
 set -e
 
+# Parse command-line arguments
+KEEP_SCRIPT=false
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -k|--keep) KEEP_SCRIPT=true ;;  # Set KEEP_SCRIPT to true if -k or --keep is passed
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
 echo "Starting installation..."
 
 # Create virtual environment with Python 3.10
@@ -44,8 +54,10 @@ echo ""
 echo -e "\033[33mYou can now run \033[1m\033[34m./run.sh\033[0m\033[33m to start the program.\033[0m"
 echo ""
 
-# Archive the install.sh script
-cp install.sh .src/install.sh.bak
-
-# Remove install.sh
-rm -- "$0"
+# Check the KEEP_SCRIPT flag
+if [ "$KEEP_SCRIPT" = true ]; then
+    echo "The --keep flag is set. Skipping removal of install.sh."
+else
+    echo "Cleaning up installation files..."
+    rm -- "$0"
+fi
