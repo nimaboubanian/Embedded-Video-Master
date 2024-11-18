@@ -1,0 +1,4 @@
+auto-subtitle==1.0.1
+openai-whisper
+ffmpeg-python
+colorama==0.4.6

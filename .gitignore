@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+
+# Logs and runtime files
+*.log
+.src/logs/
+.src/url_history.txt
+
+# Temporary and system files
+*.pyc
+__pycache__/
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Runtime script
+run.sh
